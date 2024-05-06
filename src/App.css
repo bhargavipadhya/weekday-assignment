@@ -1,0 +1,57 @@
+body {
+    font-family: Roboto, sans-serif;
+    margin: 24px;
+}
+
+.main-title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+/*Filter Container styling starts*/
+
+.filter-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 36px;
+}
+
+.filter-container .filter {
+    border: 1px solid black;
+    padding: 8px 16px;
+}
+
+/*Filter Container styling ends*/
+
+
+/*Job Card styling starts*/
+.job-card {
+    padding: 16px;
+    border: 1px solid black;
+    width: 30%;
+
+}
+
+.job__company-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.company-info {
+    margin-left: 24px;
+}
+
+/*Job Card styling ends*/
+
+
+/*Search Results styling starts*/
+
+.search-results {
+    margin-top: 36px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
