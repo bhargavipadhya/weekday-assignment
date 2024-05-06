@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
 import './App.css';
+import Grid from '@mui/material/Grid';
+import Card from "./Card";
+import Typography from "@mui/material/Typography";
+
 
 const App = () => {
 
@@ -54,26 +58,44 @@ const App = () => {
     return(
         <div>
             {/*main title*/}
-            <div className="main-title">Search Jobs</div>
+            {/*<div className="main-title">Search Jobs</div>*/}
+
+            <Typography>Search Jobs</Typography>
 
             {/*Filter container*/}
-            <div className="filter-container">
-                <div className="filter">filter 1</div>
-                <div className="filter">filter 2</div>
-                <div className="filter">filter 3</div>
-                <div className="filter">filter 4</div>
-                <div className="filter">filter 5</div>
-                <div className="filter">filter 6</div>
-                <div className="filter">filter 7</div>
-            </div>
+            <Grid container spacing={2}>
+                <Grid sx={{ border: '1px solid black' }} m={2} item xs={12} sm={6} md={2}>filter 1</Grid>
+                <Grid sx={{ border: '1px solid black' }} m={2} item xs={12} sm={6} md={2}>filter 2</Grid>
+                <Grid sx={{ border: '1px solid black' }} m={2} item xs={12} sm={6} md={2}>filter 3</Grid>
+                <Grid sx={{ border: '1px solid black' }} m={2} item xs={12} sm={6} md={2}>filter 4</Grid>
+                <Grid sx={{ border: '1px solid black' }} m={2} item xs={12} sm={6} md={2}>filter 5</Grid>
+                <Grid sx={{ border: '1px solid black' }} m={2} item xs={12} sm={6} md={2}>filter 6</Grid>
+                <Grid sx={{ border: '1px solid black' }} m={2} item xs={12} sm={6} md={2}>filter 7</Grid>
+            </Grid>
+
+
 
             <hr/>
 
             {/*Display search results i.e. job cards*/}
             <div className="search-results">
-                {jobCard()}
-                {jobCard()}
-                {jobCard()}
+
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4}>
+                        <Card />
+                    </Grid>
+                </Grid>
+
+                
             </div>
         </div>
     )
