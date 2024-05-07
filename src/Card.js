@@ -3,6 +3,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
+import Collapse from '@mui/material/Collapse';
 
 const Card = () => {
 
@@ -48,8 +49,8 @@ const Card = () => {
 
                 <Grid item mb={3} >
                     <Typography variant="body" fontWeight='lighter'>
-                        {showMore ? text : `${text.substring(0, 251)}`}
-                        <Typography sx={{cursor: 'pointer'}} variant="subtitle1" color="#53ace0" textAlign="center" onClick={() => setShowMore(!showMore)}>{showMore ? "Show less" : "Show more"}</Typography>
+                        <Collapse in={showMore} collapsedSize={80}>{showMore ? text : `${text.substring(0, 251)}...`}</Collapse>
+                        <Button variant="text" size="small" textAlign="center" onClick={() => setShowMore(!showMore)}>{showMore ? "Show less" : "Show more"}</Button>
                     </Typography>
                 </Grid>
 
