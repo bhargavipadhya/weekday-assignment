@@ -51,7 +51,7 @@ body {
 
 .search-results {
     margin-top: 36px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    /*display: flex;*/
+    /*justify-content: space-evenly;*/
+    /*align-items: center;*/
 }

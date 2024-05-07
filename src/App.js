@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Grid from '@mui/material/Grid';
 import Card from "./Card";
@@ -13,7 +13,7 @@ const App = () => {
     myHeaders.append("Content-Type", "application/json");
 
     const body = JSON.stringify({
-        "limit": 20,
+        "limit": 12,
         "offset": 0
     });
 
@@ -23,11 +23,11 @@ const App = () => {
         body
     };
 
-    fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions)
-        .then((response) => response.text())
-        .then((result) => setData(result))
-        .then((result) => console.log(result))
-        .catch((error) => console.error(error));
+    // fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions)
+    //     .then((response) => response.text())
+    //     .then((result) => setData(result))
+    //     .then((result) => console.log(result))
+    //     .catch((error) => console.error(error));
 
     const jobCard = () => (
         <div className="job-card">
@@ -55,6 +55,15 @@ const App = () => {
         </div>
     );
 
+    useEffect(() => {
+        fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions)
+            .then(response => response.json())
+            // .then(res => console.log(res))
+            .then(res => setData(res))
+            // .then((result) => console.log(result))
+            .catch((error) => console.error(error));
+    }, []);
+
     return(
         <div>
             {/*main title*/}
@@ -77,23 +86,33 @@ const App = () => {
 
             <hr/>
 
+
             {/*Display search results i.e. job cards*/}
             <div className="search-results">
 
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4}>
-                        <Card />
-                    </Grid>
+                    {data.jdList.map((d,i) => (
+                        <Grid item key={i} xs={12} sm={6} md={4}>
+                            <Card data={d}/>
+                        </Grid>
+                    ))}
                 </Grid>
+
+
+                {/*<Grid container spacing={3}>*/}
+                {/*    <Grid item xs={12} sm={6} md={4}>*/}
+                {/*        <Card />*/}
+                {/*    </Grid>*/}
+                {/*    <Grid item xs={12} sm={6} md={4}>*/}
+                {/*        <Card />*/}
+                {/*    </Grid>*/}
+                {/*    <Grid item xs={12} sm={6} md={4}>*/}
+                {/*        <Card />*/}
+                {/*    </Grid>*/}
+                {/*    <Grid item xs={12} sm={6} md={4}>*/}
+                {/*        <Card />*/}
+                {/*    </Grid>*/}
+                {/*</Grid>*/}
 
 
             </div>

@@ -5,65 +5,57 @@ import Typography from '@mui/material/Typography';
 import Button from "@mui/material/Button";
 import Collapse from '@mui/material/Collapse';
 
-const Card = () => {
+const Card = ({ data }) => {
 
     const [showMore, setShowMore] = useState(false);
-    const text = "This is a sample job and you must have displayed it to understand that its not just some random\n" +
-        "                        lorem ipsum text but something which was manually written. Oh well, if random text is what you\n" +
-        "                        were looking for then here it is: Lorem Ipsum is simply dummy text of the printing and\n" +
-        "                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the\n" +
-        "                        1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen\n" +
-        "                        book. It has survived not only five centuries, but also the leap into electronic typesetting,\n" +
-        "                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset\n" +
-        "                        sheets containing Lorem Ipsum passages and now in this assignment."
 
     return(
         <Paper elevation={3} sx={{ borderRadius: "20px" }}>
             <Grid container p={2} justifyContent="center" alignItems="center">
-                <Grid item sx={{ cursor: 'pointer', width: '50px' }}>
-                    <img alt="complex" src="https://logo.clearbit.com/sony.com" style={{ borderRadius: '50%', width: '100%' }}/>
-                </Grid>
+                {data.logoUrl === null ? <></> : <Grid item sx={{ cursor: 'pointer', width: '50px' }} ml={2}>
+                    <img alt="complex" src={data.logoUrl} style={{ borderRadius: '50%', width: '100%' }}/>
+                </Grid>}
 
-                <Grid item xs container direction="column" sx={{backgroundColor: 'white'}} ml={3}>
+                <Grid item xs container direction="column" sx={{backgroundColor: 'white'}} ml={data.logoUrl === null ? 2 : 3}>
                     <Grid item xs >
                         <Grid item xs>
-                            <Typography color='#a2a2a2' fontWeight="700" variant="subtitle1">Company Name</Typography>
-                            <Typography variant="subtitle1">Job title</Typography>
-                            <Typography variant="subtitle1" fontWeight='lighter' fontSize="0.8rem">Location</Typography>
+                            {data.companyName === null ? <></> : <Typography color='#a2a2a2' fontWeight="700" variant="subtitle1">{data.companyName}</Typography>}
+                            {data.jobRole === null ? <></> : <Typography variant="subtitle1">{data.jobRole}</Typography>}
+                            {data.location === null ? <></> : <Typography variant="subtitle1" fontWeight='lighter' fontSize="0.8rem">{data.location}</Typography>}
                         </Grid>
                     </Grid>
                 </Grid>
             </Grid>
             <Grid container direction="column" p={4}>
-                <Grid item pb={1} mt={-3}>
+                {data.minJdSalary === null || data.maxJdSalary == null ? <></> : <Grid item pb={1} mt={-3}>
                     <Typography variant="subtitle1" letterSpacing="1.2px" gutterBottom color="#36454F">
-                        Estimated Salary: INR 3 to 7 LPA
+                        Estimated Salary: {data.salaryCurrencyCode} {data.minJdSalary} to {data.maxJdSalary} LPA
                     </Typography>
-                </Grid>
+                </Grid>}
 
-                <Grid item>
+                {data.jobDetailsFromCompany === null ? <></> : <Grid item>
                     <Typography variant="subtitle1" fontWeight="700">
                         Job Description
                     </Typography>
-                </Grid>
+                </Grid>}
 
-                <Grid item mb={3} >
+                {data.jobDetailsFromCompany === null ? <></> : <Grid item mb={3} >
                     <Typography variant="body" fontWeight='lighter'>
-                        <Collapse in={showMore} collapsedSize={80}>{showMore ? text : `${text.substring(0, 251)}...`}</Collapse>
+                        <Collapse in={showMore} collapsedSize={80}>{showMore ? data.jobDetailsFromCompany : `${data.jobDetailsFromCompany.substring(0, 251)}...`}</Collapse>
                         <Button variant="text" size="small" textAlign="center" onClick={() => setShowMore(!showMore)}>{showMore ? "Show less" : "Show more"}</Button>
                     </Typography>
-                </Grid>
+                </Grid>}
 
-                <Grid item>
+                {data.minExp === null || data.maxExp === null ? <></> : <Grid item>
                     <Typography color='#a2a2a2' fontWeight="700" variant="subtitle1" letterSpacing="1.5px">
-                        Experience Required
+                        Minimum Experience
                     </Typography>
-                </Grid>
-                <Grid item mb={3}>
+                </Grid>}
+                {data.minExp === null || data.maxExp === null ? <></> : <Grid item mb={3}>
                     <Typography fontWeight="200" variant="subtitle1">
-                        2 - 3 years
+                        {data.minExp} to {data.maxExp} years
                     </Typography>
-                </Grid>
+                </Grid>}
 
                 <Grid item>
                     <Button variant="contained" fullWidth>Apply</Button>
