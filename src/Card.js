@@ -46,10 +46,10 @@ const Card = () => {
                     </Typography>
                 </Grid>
 
-                <Grid item mb={3}>
+                <Grid item mb={3} >
                     <Typography variant="body" fontWeight='lighter'>
                         {showMore ? text : `${text.substring(0, 251)}`}
-                        <button className="btn" onClick={() => setShowMore(!showMore)}>{showMore ? "Show less" : "Show more"}</button>
+                        <Typography sx={{cursor: 'pointer'}} variant="subtitle1" color="#53ace0" textAlign="center" onClick={() => setShowMore(!showMore)}>{showMore ? "Show less" : "Show more"}</Typography>
                     </Typography>
                 </Grid>
 
